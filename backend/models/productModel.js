@@ -1,4 +1,12 @@
 const mongoose = require('mongoose')
+const reviewSchema = mongoose.Schema({
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+},{
+    timestamps: true,
+})
+
 
 const productSchema = mongoose.Schema({
     user: {
@@ -10,19 +18,42 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    password: {
+    image: {
         type: String,
         required: true,
     },
-    isAdmin: {
+    brand: {
         type: String,
         required: true,
-        default: false,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    reviews:[reviewSchema],
+    rating: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    numReviews: {
+        type: number,
+        required: true,
+        default: 0
+    },
+    price: {
+        type: number,
+        required: true,
+        default: 0
+    },
+    countInStock: {
+        type: number,
+        required: true,
+        default: 0
     },
 }, {
     timestamps: true,
