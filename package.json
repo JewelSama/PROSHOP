@@ -1,0 +1,19 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "mern stack ecommerce shopping cart",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JewelSama/PROSHOP.git"
+  },
+  "author": "Jewel Sama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JewelSama/PROSHOP/issues"
+  },
+  "homepage": "https://github.com/JewelSama/PROSHOP#readme"
+}
