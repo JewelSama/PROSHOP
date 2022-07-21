@@ -24,7 +24,7 @@ const Loader = () => {
       <Spinner animation="border" variant="warning" />
       <Spinner animation="border" variant="info" />
       <Spinner animation="border" variant="light" />
-      <h2>Loading...</h2>
+      <b>Loading...</b>
       <Spinner animation="border" variant="dark" />
       <Spinner animation="grow" variant="primary" />
       <Spinner animation="grow" variant="secondary" />
