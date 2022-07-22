@@ -30,4 +30,12 @@ const authUser = asyncHandler(async(req, res) => {
 
 })
 
-module.exports = authUser;
+
+//get user profile
+
+const getUserProfile = asyncHandler(async(req, res) => {
+   res.send('success')
+
+})
+
+module.exports = {authUser, getUserProfile};
