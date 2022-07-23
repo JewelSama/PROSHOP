@@ -23,4 +23,4 @@ const getProductById = asyncHandler(async(req, res) => {
 
 })
 
-module.exports = getProducts, getProductById
+module.exports = {getProducts, getProductById}
