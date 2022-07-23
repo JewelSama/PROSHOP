@@ -21,7 +21,7 @@ const ProfileScreen = () => {
     const {loading, error, user } = userDetails
 
 
-    const userLogin = useSelector(state => state.userDetails)
+    const userLogin = useSelector(state => state.userLogin)
     const {userInfo } = userLogin
 
 
@@ -30,7 +30,7 @@ const ProfileScreen = () => {
             navigate('/login')
         } else {
             if(!user.name){
-                dispatch(getUserDetails)
+                dispatch(getUserDetails('profile'))
             } else {
                 setEmail(user.email)
                 setName(user.name)
@@ -40,7 +40,6 @@ const ProfileScreen = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        //Dispatch Register
         if(password !== confirmPassword){
             setMessage('Passwords do not match!')
         } else {
