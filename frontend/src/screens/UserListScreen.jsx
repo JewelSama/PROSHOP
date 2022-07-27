@@ -5,7 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import {listUsers} from '../actions/userActions'
+import {listUsers, deleteUser} from '../actions/userActions'
 
 const UserListScreen = () => {
     const dispatch = useDispatch()
@@ -16,6 +16,9 @@ const UserListScreen = () => {
     
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
+    
+    const userDelete = useSelector(state => state.userDelete)
+    const {success:successDelete} = userDelete
 
     useEffect(() => {
         if(userInfo && userInfo.isAdmin === "true"){
@@ -23,10 +26,13 @@ const UserListScreen = () => {
         } else {
             navigate('/')
         }
-    }, [dispatch, navigate, userInfo])
+    }, [dispatch, navigate, userInfo, successDelete])
 
     const deleteHandler = (id) => {
-        console.log('delete User!')
+        if(window.confirm('Are you sure?'))
+        {
+            dispatch(deleteUser(id))
+      }
     }
 
   return (
@@ -54,7 +60,7 @@ const UserListScreen = () => {
                             )}</td>
                             <td>
                                 <LinkContainer to={`/user/${user._id}/edit`}>
-                                    <Button variant="light" classname="btn-sm">
+                                    <Button variant="light" className="btn-sm">
                                         <i className="fas fa-edit"></i>
                                     </Button>
                                 </LinkContainer>
