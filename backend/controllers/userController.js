@@ -87,7 +87,7 @@ const getUserProfile = asyncHandler(async(req, res) => {
    }
 })
 
-//update uaer profile
+//update user profile
 // @access private (Token)
 
 const updateUserProfile = asyncHandler(async(req, res) => {
@@ -115,8 +115,21 @@ const updateUserProfile = asyncHandler(async(req, res) => {
      throw new Error('User not found')
     }
  })
+
+ //Get all users for admin
+ //GET api/users
+// @access Private/Admin
+
+
+const getUsers = asyncHandler(async(req, res) => {
+    const users = await User.find({})
+    res.json(users)
+ 
+ 
+    
+ })
  
 
 
 
-module.exports = {authUser, getUserProfile, registerUser, updateUserProfile};
+module.exports = {authUser, getUserProfile, registerUser, updateUserProfile, getUsers};
