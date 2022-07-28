@@ -21,7 +21,7 @@ const UserListScreen = () => {
     const {success:successDelete} = userDelete
 
     useEffect(() => {
-        if(userInfo && userInfo.isAdmin === "true"){
+        if(userInfo && userInfo.isAdmin){
             dispatch(listUsers())
         } else {
             navigate('/')
