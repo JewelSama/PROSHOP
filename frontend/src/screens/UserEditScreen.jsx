@@ -6,15 +6,15 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {getUserDetails} from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import { useImperativeHandle } from 'react'
 
 const UserEditScreen = () => {
     const params = useParams()
     const userId = params.id
 
-    const location = useLocation()
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
-    const [isAdmin, setisAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
 
 
 
@@ -28,8 +28,15 @@ const UserEditScreen = () => {
 
 
     useEffect(() => {
-       
-    }, [])
+        if(!user.name || user._id !== userId){
+            dispatch(getUserDetails(userId))
+        } else {
+            setName(user.name)
+            setEmail(user.email)
+            setIsAdmin(user.isAdmin)
+        }
+
+    }, [userId, dispatch, user])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -59,7 +66,7 @@ const UserEditScreen = () => {
            
             <Form.Group className="mt-2" controlId='isadmin'>
             <Form.Check type="checkbox" label = "Is Admin" checked={isAdmin}
-            onChange={(e) => setisAdmin(e.target.checked)}></Form.Check>
+            onChange={(e) => setIsAdmin(e.target.checked)}></Form.Check>
             </Form.Group>
 
             <Button className="mt-3" type="submit" variant="primary">
