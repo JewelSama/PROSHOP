@@ -7,11 +7,15 @@ const {notFound, errorHandler} = require('./middleware/errorMiddleware')
 const UserRoutes = require('./routes/user.routes')
 const orderRoutes = require('./routes/order.routes')
 const uploadRouter = require('./routes/uploads.routes')
-
+const morgan = require('morgan')
 
 dotenv.config()
 
 connectDB()
+
+if(process.env.NODE_ENV === 'development'){
+    app.use(morgan('dev'))
+}
 
 const app = express()
 
