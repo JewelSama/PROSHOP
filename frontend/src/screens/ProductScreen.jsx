@@ -4,6 +4,7 @@ import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap'
 import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Meta from '../components/Meta';
 import {useDispatch, useSelector} from 'react-redux'
 import {listProductDetails, createProductReview} from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
@@ -59,6 +60,7 @@ return (
       {loading ? (<Loader /> ) : error ? (<Message variant= 'danger'>{error}</Message>
       ):(
         <>
+        <Meta title={product.name}  />
 
         <Row>
         <Col md={6}>
@@ -147,7 +149,7 @@ return (
               <h1>Write a Customer Review</h1>  
               {userInfo ? (
                 <Form onSubmit={submitHandler}>
-                  <Form.Group controlledId="rating">
+                  <Form.Group controlId="rating">
                     <Form.Label>Rating</Form.Label>
                     <Form.Control as="select" value={rating} onChange={(e) => setRating(e.target.value)}>
                       <option value="">Select...</option>

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product'
@@ -7,6 +7,8 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import {listProducts} from '../actions/productActions'
+import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -25,6 +27,8 @@ const pageNumber = params.pageNumber || 1
 
   return (
     <>
+    <Meta />
+    {!keyword ? <ProductCarousel /> : <Link className="btn btn-light" to="/">Go Back</Link> }
         <h1>Latest Products</h1>
         {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> :
         <>
