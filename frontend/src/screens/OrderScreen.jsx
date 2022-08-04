@@ -10,6 +10,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import {ORDER_PAY_RESET, ORDER_DELIVER_RESET} from '../constants/orderConstants'
 
 
+
 const OrderScreen = () => {
     const navigate = useNavigate()
     const [sdkReady, setSdkReady] = useState(false)
@@ -83,7 +84,7 @@ useEffect(() => {
             setSdkReady(true)
         }
     }
-}, [order, dispatch, orderId, successPay, successDeliver])
+}, [order, dispatch, orderId, successPay, successDeliver, navigate, userInfo])
 
 
 
@@ -96,6 +97,8 @@ useEffect(() => {
     const deliverHandler = () => {
         dispatch(deliverOrder(order))
     }
+
+
 
 
 
@@ -201,22 +204,24 @@ useEffect(() => {
                                  amount={order.totalPrice}
                                  onSuccess = {successPaymentHandler}   
                                 />
-                               )
+                                )
                             }
                             </ListGroup.Item>
                         )}
+                        <a href={`paywithpaystack/${order.totalPrice}`} className="btn btn-block" >Pay With Paystack</a>
                         {loadingDeliver && <Loader />}
                         {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                             <ListGroup>
                                 <Button type="btn btn-block" onClick={deliverHandler}>Mark as Delivered</Button>
                             </ListGroup>
                         )}
-
                     </ListGroup>
                 </Card>
             </Col>
 
         </Row>
+                        {/* <PaystackButton {...componentProps} /> */}
+
   </> 
     
 }
